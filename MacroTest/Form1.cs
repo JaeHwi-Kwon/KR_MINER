@@ -607,10 +607,12 @@ namespace MacroTest
                 textBox12.ReadOnly = false;
                 textBox13.ReadOnly = false;
                 textBox14.ReadOnly = false;
+                textBox1.AppendText("골드가 다 소진되었습니다.\r\n");
 
                 return;
             }
-            else if (ImgCompare(screenshot, Resource1.General_Gacha_Full,
+            
+            if (ImgCompare(screenshot, Resource1.General_Gacha_Full,
                 575, 510, 120, 30) > imgacr / 100)
             {
                 if (gachaCnt > 0) gachaCnt -= 1;

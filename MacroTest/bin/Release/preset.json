@@ -1,5 +1,5 @@
 {
-  "gamestoppedlatency": 5,
+  "gamestoppedlatency": 20,
   "goldbuttonlatency": 1.0,
   "generalgoldcycle": 6,
   "latencytweaker": 1.0,
