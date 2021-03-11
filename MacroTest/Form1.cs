@@ -8,6 +8,8 @@ using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Diagnostics;
+using System.Text;
 
 namespace MacroTest
 {
@@ -36,6 +38,11 @@ namespace MacroTest
         private static extern IntPtr GetClientRect(IntPtr hWnd, ref Rect rect);
         [DllImport("user32")]
         private static extern IntPtr ScreenToClient(IntPtr hWnd, ref Rect rect);
+        [DllImport("user32")]
+        static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+        [DllImport("user32")]
+        public static extern IntPtr WindowFromPoint(System.Drawing.Point pt);
+
         public enum WMessages : int
 
         {
@@ -71,7 +78,6 @@ namespace MacroTest
             BlueStacks, LDPlayer, NOX
         }
 
-
         class AppInfo_LDP {
             public static KeyValuePair<string, string> WndParent = new KeyValuePair<string, string>( "LDPlayerMainFrame", null );
             public static KeyValuePair<string, string> WndChild = new KeyValuePair<string, string>("RenderWindow", null);
@@ -82,13 +88,13 @@ namespace MacroTest
             public static KeyValuePair<string, string> WndChild = new KeyValuePair<string, string>(null, "BlueStacks Android PluginAndroid");
             public static KeyValuePair<string, string> TargetWnd = new KeyValuePair<string, string>(null, "_ctl.Window");
         }
-        class AppInfo_NOX {
-            public const int wndSizeX = 2;
-            public const int wndSizeY = 48;
-            public static KeyValuePair<string, string> WndParent = new KeyValuePair<string, string>("Qt5QWindowIcon", null);
-            public static KeyValuePair<string, string> WndChild = new KeyValuePair<string, string>(null, "ScreenBoardClassWindow");
-            public static KeyValuePair<string, string> TargetWnd = new KeyValuePair<string, string>(null, "sub");
-        }
+        //class AppInfo_NOX {
+        //    public const int wndSizeX = 2;
+        //    public const int wndSizeY = 48;
+        //    public static KeyValuePair<string, string> WndParent = new KeyValuePair<string, string>("Qt5QWindowIcon", null);
+        //    public static KeyValuePair<string, string> WndChild = new KeyValuePair<string, string>(null, "ScreenBoardClassWindow");
+        //    public static KeyValuePair<string, string> TargetWnd = new KeyValuePair<string, string>(null, "sub");
+        //}
         
 
         public IntPtr ParentwHnd = IntPtr.Zero;
@@ -115,7 +121,10 @@ namespace MacroTest
         public int generalgoldcycle = 6;
         public double goldbuttonlatency = 1.0;
         public int gamestoppedlatency = 20;
-
+        public Process[] processes;
+        public List<IntPtr> AppPlayerHandles = new List<IntPtr>();
+        
+        
 
         public Form1()
         {
@@ -125,12 +134,68 @@ namespace MacroTest
                 threadEnabled[i] = false;
                 threads[i] = null;
             }
-            int app = WhichAppPlayer();
+            //int app = WhichAppPlayer();
+            FindAllTheAppPlayerWnd();
             
-            FindWnd(app);
+            //FindWnd(app);
             gachaCnt = 0;
 
             LoadPreset();
+
+            string[] data = { "1", "2", "3","4","5","6" };
+            comboBox1.Items.AddRange(data);
+
+
+            
+        }
+
+        public void FindAllTheAppPlayerWnd()
+        {
+            processes = Process.GetProcesses();
+            foreach (var p in processes)
+            {
+                //textBox1.AppendText(p.ProcessName.ToString() + "\r\n");
+                //// 클래스 이름 검색
+                //StringBuilder className = new StringBuilder(255);
+                //GetClassName(p.MainWindowHandle, className, 255);
+                //string classNameAsStr = className.ToString();
+                //textBox1.AppendText(classNameAsStr + "\r\n");
+                //bool isContained = classNameAsStr.Contains("BlueStacks");
+                //if (isContained)
+                //{
+                //    textBox1.AppendText(p.Id + "에 블루스택스 문자가 있습니다. \r\n");
+                //    AppPlayerHandles.Add(p.MainWindowHandle);
+                //    FindCtrlHandles(classNameAsStr, (IntPtr)p.MainWindowHandle);
+                //}
+                if (p.ProcessName.Contains("Bluestacks"))
+                {
+                    textBox1.AppendText(p.Id + "\r\n");
+                }
+            }
+        }
+
+        public int FindCtrlHandles(string ClassName, IntPtr hWnd)
+        {
+            List<IntPtr> result = new List<IntPtr>();
+            bool isContained = false;
+            if (ClassName.Contains("BlueStacks")) {
+                IntPtr CurWnd = IntPtr.Zero;
+                IntPtr PrevWnd = IntPtr.Zero;
+                while (true)
+                {
+                    CurWnd = FindWindowEx(hWnd, PrevWnd, null, null);
+                    if (CurWnd == IntPtr.Zero) break;
+                    result.Add(CurWnd);
+                    PrevWnd = CurWnd;
+                }
+                foreach (var l in result)
+                    textBox1.AppendText(l.ToString());
+                return 1;
+            }
+            if (ClassName.Contains(AppInfo_LDP.WndParent.Value)) {
+                return 1;
+            }
+            return 0;
         }
 
         public void LoadPreset()
@@ -209,10 +274,10 @@ namespace MacroTest
             {
                 return (int)AppPlayer.BlueStacks;
             }
-            else if (FindWindow(AppInfo_NOX.WndParent.Key, AppInfo_NOX.WndParent.Value) != IntPtr.Zero)
-            {
-                return (int)AppPlayer.NOX;
-            }
+            //else if (FindWindow(AppInfo_NOX.WndParent.Key, AppInfo_NOX.WndParent.Value) != IntPtr.Zero)
+            //{
+            //    return (int)AppPlayer.NOX;
+            //}
 
             return -1;
         }
@@ -299,14 +364,14 @@ namespace MacroTest
                     ChildwHnd = FindWindowEx(ParentwHnd, IntPtr.Zero, AppInfo_BLU.WndChild.Key, AppInfo_BLU.WndChild.Value);
                     TrgwHnd = FindWindowEx(ChildwHnd, IntPtr.Zero, AppInfo_BLU.TargetWnd.Key, AppInfo_BLU.TargetWnd.Value);
                     break;
-                case (int)AppPlayer.NOX:
-                    wndsizeX = AppInfo_NOX.wndSizeX;
-                    wndsizeY = AppInfo_NOX.wndSizeY;
-                    textBox9.Text = "You're Running NOX Player";
-                    ParentwHnd = FindWindow(AppInfo_NOX.WndParent.Key, AppInfo_NOX.WndParent.Value);
-                    ChildwHnd = FindWindowEx(ParentwHnd, IntPtr.Zero, AppInfo_NOX.WndChild.Key, AppInfo_NOX.WndChild.Value);
-                    TrgwHnd = FindWindowEx(ChildwHnd, IntPtr.Zero, AppInfo_NOX.TargetWnd.Key, AppInfo_NOX.TargetWnd.Value);
-                    SetWindowPos((int)ParentwHnd, 0, 0, 0, 1280 + wndsizeX, 720 + wndsizeY, 0x10);
+                //case (int)AppPlayer.NOX:
+                //    wndsizeX = AppInfo_NOX.wndSizeX;
+                //    wndsizeY = AppInfo_NOX.wndSizeY;
+                //    textBox9.Text = "You're Running NOX Player";
+                //    ParentwHnd = FindWindow(AppInfo_NOX.WndParent.Key, AppInfo_NOX.WndParent.Value);
+                //    ChildwHnd = FindWindowEx(ParentwHnd, IntPtr.Zero, AppInfo_NOX.WndChild.Key, AppInfo_NOX.WndChild.Value);
+                //    TrgwHnd = FindWindowEx(ChildwHnd, IntPtr.Zero, AppInfo_NOX.TargetWnd.Key, AppInfo_NOX.TargetWnd.Value);
+                //    SetWindowPos((int)ParentwHnd, 0, 0, 0, 1280 + wndsizeX, 720 + wndsizeY, 0x10);
                     return;
                 case (int)AppPlayer.LDPlayer:
                     textBox9.Text = "You're Running LDPlayer";
@@ -409,6 +474,8 @@ namespace MacroTest
             screenshot.Save(@".\tempscr.bmp");
             timer2.Enabled = true;
             timer3.Enabled = false;
+
+            
         }
 
 
@@ -491,10 +558,9 @@ namespace MacroTest
                 }
                 else
                 {
-                    screenshotcomp = screenshot;
                     frzCnt = 0;
                 }
-
+                screenshotcomp = screenshot;
             }
         }
 
@@ -643,14 +709,14 @@ namespace MacroTest
                 }
             }
 
-            if(cnt == 30 || frzCnt > 3)
-            {
-                if (ImgCompare(screenshot, Resource1.Store_Gacha_Normal_Goldx10,
-                1180, 646, 30, 30) >= imgacr / 100)
-                {
-                    if (gachaCnt > 0) gachaCnt -= 1;
-                }
-            }
+            //if(cnt == 30 || frzCnt > 3)
+            //{
+            //    if (ImgCompare(screenshot, Resource1.Store_Gacha_Normal_Goldx10,
+            //    1180, 646, 30, 30) >= imgacr / 100)
+            //    {
+            //        if (gachaCnt > 0) gachaCnt -= 1;
+            //    }
+            //}
         }
 
         // 0번 쓰레드
@@ -774,6 +840,36 @@ namespace MacroTest
                     threads[i].Join();
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+        // 만약, int selected 가 0일 경우, 동작하지 않는다.
+        // 그 외의 숫자일 경우, enum searchPoint에 따라서 맞게 작업한다.
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.E:
+                    textBox1.AppendText("E button has called \r\n");
+                    KeyPreview = false;
+                    comboBox1.Enabled = true;
+                    break;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            comboBox1.Enabled = false;
+            KeyPreview = true;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
