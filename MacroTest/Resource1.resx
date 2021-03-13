@@ -117,41 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bluestacks_main" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\bluestacks_main.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="General_Gacha_Full" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\General_Gacha_Full.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Gold_Empty_Message" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Gold_Empty_Message.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Inventory" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Inventory.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Inventory_sell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Inventory_sell.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Inventory_SellAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Inventory_SellAll.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Inventory_SellAll_Confirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Inventory_SellAll_Confirm.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kingsraid_main" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\kingsraid_main.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Store_Gacha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Store_Gacha.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Store_Gacha_Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Store_Gacha_Normal.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Store_Gacha_Normal_Goldx10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Store_Gacha_Normal_Goldx10.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Store_Gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>bin\Debug\Store_Gold.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

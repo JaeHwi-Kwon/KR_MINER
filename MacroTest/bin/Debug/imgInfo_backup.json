@@ -1,0 +1,121 @@
+[
+  {
+    "ImgLoc": ".\\Img\\1.bmp",
+    "SearchPt": "967, 646",
+    "ClickPt": "982, 658",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\2.bmp",
+    "SearchPt": "103, 6",
+    "ClickPt": "137, 23",
+    "click_latency": 2.5,
+    "SearchSize": "60, 40"
+  },
+  {
+    "ImgLoc": ".\\Img\\3.bmp",
+    "SearchPt": "821, 12",
+    "ClickPt": "836, 29",
+    "click_latency": 2.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\4.bmp",
+    "SearchPt": "63, 626",
+    "ClickPt": "77, 637",
+    "click_latency": 1.0,
+    "SearchSize": "30, 20"
+  },
+  {
+    "ImgLoc": ".\\Img\\5.bmp",
+    "SearchPt": "19, 491",
+    "ClickPt": "62, 499",
+    "click_latency": 1.0,
+    "SearchSize": "80, 20"
+  },
+  {
+    "ImgLoc": ".\\Img\\6.bmp",
+    "SearchPt": "342, 500",
+    "ClickPt": "385, 550",
+    "click_latency": 2.5,
+    "SearchSize": "100, 100"
+  },
+  {
+    "ImgLoc": ".\\Img\\7.bmp",
+    "SearchPt": "1096, 609",
+    "ClickPt": "1111, 623",
+    "click_latency": 2.5,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\8.bmp",
+    "SearchPt": "891, 608",
+    "ClickPt": "941, 623",
+    "click_latency": 1.0,
+    "SearchSize": "100, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\9.bmp",
+    "SearchPt": "779, 587",
+    "ClickPt": "796, 600",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\10.bmp",
+    "SearchPt": "745, 514",
+    "ClickPt": "758, 526",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\11.bmp",
+    "SearchPt": "142, 649",
+    "ClickPt": "160, 659",
+    "click_latency": 4.0,
+    "SearchSize": "30, 20"
+  },
+  {
+    "ImgLoc": ".\\Img\\12.bmp",
+    "SearchPt": "25, 666",
+    "ClickPt": "31, 681",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\13.bmp",
+    "SearchPt": "1206, 51",
+    "ClickPt": "1221, 67",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\14.bmp",
+    "SearchPt": "616, 650",
+    "ClickPt": "617, 666",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\15.bmp",
+    "SearchPt": "287, 137",
+    "ClickPt": "301, 154",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\16.bmp",
+    "SearchPt": "567, 508",
+    "ClickPt": "645, 525",
+    "click_latency": 0.5,
+    "SearchSize": "120, 30"
+  },
+  {
+    "ImgLoc": ".\\Img\\17.bmp",
+    "SearchPt": "445, 510",
+    "ClickPt": "460, 525",
+    "click_latency": 1.0,
+    "SearchSize": "30, 30"
+  }
+]
